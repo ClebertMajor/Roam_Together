@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile - Roam Together</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🌍 Roam Together</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="browse.html">Browse</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <section class="profile-section">
+    <h2>Tell us about yourself ✨</h2>
+
+    <form class="profile-form">
+      <label for="photo">Profile Photo</label>
+      <input type="file" id="photo" accept="image/*" />
+
+      <label for="bio">Short Bio</label>
+      <textarea id="bio" placeholder="Write something fun about you..."></textarea>
+
+      <label>Select Your Interests</label>
+      <div class="interests">
+        <label><input type="checkbox" /> Hiking</label>
+        <label><input type="checkbox" /> Photography</label>
+        <label><input type="checkbox" /> Road Trips</label>
+        <label><input type="checkbox" /> Foodie</label>
+        <label><input type="checkbox" /> Music</label>
+        <label><input type="checkbox" /> Camping</label>
+      </div>
+
+      <button type="submit">Save Profile</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Roam Together. Find someone to explore with.</p>
+  </footer>
+  <script>
+    document.getElementById("profile-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const bio = document.getElementById("bio").value;
+      const interests = Array.from(document.querySelectorAll('#interests input[type="checkbox"]:checked'))
+                            .map(cb => cb.value);
+  
+      // Simulate photo upload (just saving filename, not actual image)
+      const photoInput = document.getElementById("photo");
+      const photo = photoInput.files[0] ? photoInput.files[0].name : "";
+  
+      // Get existing user
+      const user = JSON.parse(localStorage.getItem("roamUser"));
+  
+      if (!user) {
+        alert("No user found. Please sign in first.");
+        window.location.href = "login.html";
+        return;
+      }
+  
+      // Update user profile info
+      const updatedUser = {
+        ...user,
+        bio,
+        interests,
+        photo
+      };
+  
+      // Save back to localStorage
+      localStorage.setItem("roamUser", JSON.stringify(updatedUser));
+  
+      alert("Profile saved successfully! 🎉");
+    });
+  </script>
+  
+</body>
+</html>
