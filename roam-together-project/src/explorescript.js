@@ -95,16 +95,52 @@ function applyFilters() {
 applyFilters();
 
 
-// ---------- 3-line menu dropdown ----------
+// ---------- 3-line menu dropdown (works + goes back/home.html) ----------
 const menuBtn = document.querySelector('.menu-button');
 const menuDropdown = document.querySelector('.menu-dropdown');
 
+// toggle the dropdown when the menu button is clicked
 menuBtn?.addEventListener('click', (e) => {
-  e.stopPropagation(); // don't trigger document click
+  e.stopPropagation(); // prevent closing immediately
   if (menuDropdown.hidden || menuDropdown.style.display === 'none') {
     show(menuDropdown);
   } else {
     hide(menuDropdown);
+  }
+});
+
+// handle clicks inside the dropdown menu
+menuDropdown?.addEventListener('click', (e) => {
+  const target = e.target;
+
+  // if the user clicks a "Back" option in the dropdown
+  if (target.matches('[data-action="back"]')) {
+    e.preventDefault();
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "home.html"; // 👈 your homepage
+    }
+  }
+
+  // after any click inside, close the dropdown
+  hide(menuDropdown);
+});
+
+// close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  const insideMenu = e.target.closest('.menu-button') || e.target.closest('.menu-dropdown');
+  if (!insideMenu) hide(menuDropdown);
+
+  const insideFilter = e.target.closest('.filter-button') || e.target.closest('.filter-menu');
+  if (!insideFilter) hide(filterMenu);
+});
+
+// close both dropdowns on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    hide(menuDropdown);
+    hide(filterMenu);
   }
 });
 
