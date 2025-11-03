@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore Page</title>
+  <link rel="stylesheet" href="roam-together-project/src/explorestyle.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+</head>
+
+<body>
+  <div class="explore-page-container">
+    <header class="page-header">
+      <h1>Explore Page</h1>
+    </header>
+
+    <div class="main-bar">
+      <div class="search-bar-container">
+        <input type="text" placeholder="Search destinations..." class="search-input" />
+        <button class="search-button"><i class="fas fa-search"></i></button>
+      </div>
+
+      <button class="filter-button">Filter</button>
+      <div class="filter-menu" hidden>
+        <label><input type="checkbox" value="city" checked> City</label>
+        <label><input type="checkbox" value="beach" checked> Beach</label>
+        <label><input type="checkbox" value="mountain" checked> Mountain</label>
+        <label><input type="checkbox" value="rural" checked> Rural</label>
+      </div>
+
+      <!-- 3-line menu -->
+      <button class="menu-button">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Dropdown menu -->
+      <div class="menu-dropdown" hidden>
+        <a href="index.html">Home Page</a>
+        <a href="about.html">About</a>
+        <a href="profile.html">Profile / Login</a>
+      </div>
+    </div>
+
+    <main class="content-grid">
+      <div class="content-card" data-tags="city">
+        <div class="picture-placeholder">Picture</div>
+        <div class="card-info">
+          <h3>Alex Johnson</h3>
+          <p class="destination-info">Paris, France</p>
+          <p class="short-info">Photographer & Coffee Enthusiast</p>
+        </div>
+      </div>
+
+      <div class="content-card" data-tags="rural">
+        <div class="picture-placeholder">Picture</div>
+        <div class="card-info">
+          <h3>Chloe Nguyen</h3>
+          <p class="destination-info">Toronto, Canada</p>
+          <p class="short-info">Travel Blogger</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="roam-together-project/src/explorescript.js" defer></script>
+</body>
+</html>
