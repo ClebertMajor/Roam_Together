@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roam Together | Meet, Connect, and Explore</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <header class="header" id="home">
+        <video class="hero-video" autoplay muted loop>
+            <source src="css/images/hero.mp4" type="video/mp4" />
+        </video>
+
+        <nav class="main-nav">
+            <a href="#" class="brand">
+                <img src="css/images/logo.png" class="brand-logo" alt="Roam Together" />
+                <span class="brand-name">Roam Together</span>
+            </a>
+            
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Toggle navigation"
+                onclick="document.getElementById('nav-links').classList.toggle('active');
+                         this.querySelector('i').classList.toggle('fa-bars');
+                         this.querySelector('i').classList.toggle('fa-xmark');"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="nav-links"> 
+                <li><a href="#explore-cards">Discover</a></li>
+                <li><a href="#connect">Connect</a></li>
+                <li><a href="#map">Map</a></li> 
+                <li><a href="#testimonials">Stories</a></li>
+            </ul>
+            
+            <a href="#signup-modal" class="signup-btn desktop-only">Join Now</a>
+        </nav>
+
+        <div class="hero-text">
+            <h1>Travel the World, Together 🌍</h1>
+            <p>Meet new people, explore new experiences, and make unforgettable memories along the way.</p>
+            <a href="#explore-cards" class="cta-btn">Start Exploring</a>
+        </div>
+    </header>
+
+    <section class="explore-cards" id="explore-cards">
+        <h2 class="section-title gradient-title" data-aos="fade-up">Meet. Connect. Experience Together.</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Discover authentic connections and unforgettable adventures with travelers from around the world.
+        </p>
+
+        <div class="explore-carousel">
+            <div class="explore-track">
+                <div class="cutout-card" data-aos="fade-up">
+                    <div class="card-image">
+                        <img src="css/images/photo10.png" alt="Adventure" class="bg-img" />
+                        <img src="css/images/photo2.1.jpg" alt="Friends hiking" class="cutout-img" />
+                    </div>
+                    <a href="#" class="card-title">Find Travel Partners for Your Next Trip</a>
+                </div>
+
+                <div class="cutout-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-image">
+                        <img src="css/images/photo2.2.jpg" alt="Cooking Class" class="bg-img" />
+                        <img src="css/images/photo2.3.jpg" alt="Cooking Together" class="cutout-img" />
+                    </div>
+                    <a href="#" class="card-title">Join Local Food & Culture Experiences</a>
+                </div>
+
+                <div class="cutout-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-image">
+                        <img src="css/images/photo2.4.jpg" alt="Bonfire Meetup" class="bg-img" />
+                        <img src="css/images/photo2.5.jpg" alt="Beach Bonfire" class="cutout-img" />
+                    </div>
+                    <a href="#" class="card-title">Meet New Friends at Global Events</a>
+                </div>
+
+                <div class="cutout-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-image">
+                        <img src="css/images/photo2.6.jpg" alt="Story Sharing" class="bg-img" />
+                        <img src="css/images/photo2.7.jpg" alt="Travel Story" class="cutout-img" />
+                    </div>
+                    <a href="#" class="card-title">Share Your Story & Inspire Others</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="connect" id="connect">
+        <h2 class="section-title gradient-title" data-aos="fade-up">Connect with Travelers</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Find like-minded explorers and discover shared itineraries.
+        </p>
+
+        <div class="connect-slider">
+            <div class="slider-wrapper css-snap-wrapper"> 
+                <div class="slide css-snap-slide">
+                    <img src="css/images/photo2.3.jpg" alt="Bali travelers" />
+                    <div class="slide-info">
+                        <h4>Ava</h4>
+                        <p>Bali — “Met my best friend through Roam Together.”</p>
+                    </div>
+                </div>
+
+                <div class="slide css-snap-slide">
+                    <img src="css/images/photo2.5.jpg" alt="Paris adventure" />
+                    <div class="slide-info">
+                        <h4>Lia</h4>
+                        <p>Paris — “We explored hidden cafés and markets together.”</p>
+                    </div>
+                </div>
+
+                <div class="slide css-snap-slide">
+                    <img src="css/images/photo2.7.jpg" alt="Tokyo adventure" />
+                    <div class="slide-info">
+                        <h4>Sophia</h4>
+                        <p>Tokyo — “So glad I had a fellow geek to explore with.”</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section" id="map">
+        <h2 class="section-title gradient-title" data-aos="fade-up">Explore Destinations Together</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Use the map to find other travelers and upcoming trips around the world.
+        </p>
+        <div id="travelMap" data-aos="fade-up" data-aos-delay="200"></div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title gradient-title" data-aos="fade-up">What Travelers Say</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Real connections. Real adventures. Real stories from our community.
+        </p>
+
+        <div class="testimonial-grid">
+            <div class="t-card" data-aos="fade-up">
+                <p>“I met my best friend in Bali here. We surfed every morning!”</p>
+                <div class="t-meta">
+                    <img src="css/images/photo2.6.jpg" alt="Ava">
+                    <span>Ava — Bali</span>
+                </div>
+            </div>
+
+            <div class="t-card" data-aos="fade-up" data-aos-delay="100">
+                <p>“Paris was a dream. Found a foodie buddy and we ate our way through the city.”</p>
+                <div class="t-meta">
+                    <img src="css/images/photo2.4.jpg" alt="Lia">
+                    <span>Lia — Paris</span>
+                </div>
+            </div>
+
+            <div class="t-card" data-aos="fade-up" data-aos-delay="200">
+                <p>“Tokyo’s tech scene is insane. So glad I had a fellow geek to explore with.”</p>
+                <div class="t-meta">
+                    <img src="css/images/photo2.7.jpg" alt="Sophia">
+                    <span>Sophia — Tokyo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <h4>Roam Together</h4>
+        <p>Connecting explorers, one journey at a time.</p>
+        <div class="icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+    </footer>
+
+    <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'});">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <a href="#" class="modal-close" aria-label="Close modal">&times;</a>
+            <div class="modal-header">
+                <h3>Join Roam Together 🚀</h3>
+                <p>Ready to meet your next travel buddy? Sign up for exclusive access.</p>
+            </div>
+            <form class="modal-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Choose Password" required>
+                <button type="submit" class="cta-btn">Create Account</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize AOS
+        document.addEventListener("DOMContentLoaded", () => {
+            AOS.init({ duration: 800, once: true });
+            
+            // CSS Only Modal Fix: Allows closing the modal with the escape key (minimal JS)
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && location.hash === '#signup-modal') {
+                    history.pushState('', document.title, window.location.pathname);
+                }
+            });
+        });
+
+        // Leaflet map initialization
+        const map = L.map("travelMap").setView([20, 0], 2);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+                '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const travelers = [
+            { name: "Ava", city: "Bali", coords: [-8.3405, 115.092] },
+            { name: "Lia", city: "Paris", coords: [48.8566, 2.3522] },
+            { name: "Sophia", city: "Tokyo", coords: [35.6762, 139.6503] }
+        ];
+
+        travelers.forEach(t => {
+            L.marker(t.coords).addTo(map).bindPopup(`<strong>${t.name}</strong><br>${t.city}`);
+        });
+        
+        // Smooth scroll initialization (Lenis)
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+    </script>
+</body>
+</html>
