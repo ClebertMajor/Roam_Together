@@ -1,0 +1,143 @@
+/* Basic Reset and Font Setup */
+body {
+  
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Light background for the page */
+}
+
+.explore-page-container {
+    max-width: 600px; /* Simulating a typical mobile screen width */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Page Header Styling */
+.page-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border: 2px solid #a0c4ff; /* Light blue border from the sketch */
+    display: inline-block;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block; /* To center the block element */
+    width: fit-content;
+}
+
+.page-header h1 {
+    font-size: 1.5em;
+    font-weight: normal;
+    color: #333;
+    margin: 0;
+}
+
+/* Main Bar (Search, Filter, Menu) Styling */
+.main-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+  
+}
+
+/* Search Bar Styling */
+.search-bar-container {
+    flex-grow: 1; /* Allows the search bar to take up most of the space */
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px 15px;
+    outline: none;
+    font-size: 1em;
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    color: #666;
+}
+
+/* Filter Button Styling */
+.filter-button {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #333;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* Menu Button Styling */
+.menu-button {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Content Grid for Cards */
+.content-grid {
+    display: grid;
+    /* Creates columns that are suitable for the available space */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 20px;
+}
+
+/* Individual Content Card Styling */
+.content-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.picture-placeholder {
+    height: 120px; /* Fixed height for the picture box */
+    background-color: #e0e0e0; /* Light gray background */
+    border: 1px dashed #999; /* Dashed border to look like a placeholder */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card-info h3 {
+    font-size: 1.1em;
+    margin: 0 0 5px 0;
+    color: #000;
+}
+
+.card-info .destination-info {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0 0 3px 0;
+}
+
+.card-info .short-info {
+    font-size: 0.8em;
+    color: #999;
+    margin: 0;
+}
