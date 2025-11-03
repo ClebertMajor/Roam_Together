@@ -1,11 +1,24 @@
+// ---------- helpers to reliably show/hide even if CSS fights hidden ----------
+function show(el) {
+  if (!el) return;
+  el.hidden = false;           // for semantics
+  el.style.display = '';       // let CSS decide (or default)
+}
+function hide(el) {
+  if (!el) return;
+  el.hidden = true;            // for semantics
+  el.style.display = 'none';   // hard‐hide, overrides CSS display
+}
+
+// ---------- search ----------
 const searchInput = document.querySelector('.search-input');   // the text box
 const cards = document.querySelectorAll('.content-card');      // all cards on the page
 
-searchInput.addEventListener('input', () => {
+searchInput?.addEventListener('input', () => {
   const query = searchInput.value.toLowerCase();               // what the user typed
   cards.forEach(card => {
-    const title = card.querySelector('h3').textContent.toLowerCase();
-    const destination = card.querySelector('.destination-info').textContent.toLowerCase();
+    const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+    const destination = card.querySelector('.destination-info')?.textContent.toLowerCase() || '';
 
     // check if query appears in either field
     if (title.includes(query) || destination.includes(query)) {
@@ -17,32 +30,36 @@ searchInput.addEventListener('input', () => {
 });
 
 
-// --- filter logic for explore page ---
-
-// find elements on the page
+// ---------- filter logic for explore page ----------
 const filterBtn  = document.querySelector('.filter-button');
 const filterMenu = document.querySelector('.filter-menu');
 
-
 // toggle the dropdown when the Filter button is clicked
-filterBtn.addEventListener('click', () => {
-  filterMenu.hidden = !filterMenu.hidden;
+filterBtn?.addEventListener('click', (e) => {
+  e.stopPropagation(); // don't trigger document click
+  if (filterMenu.hidden || filterMenu.style.display === 'none') {
+    show(filterMenu);
+  } else {
+    hide(filterMenu);
+  }
 });
 
 // close the dropdown when clicking outside it
 document.addEventListener('click', (e) => {
   const inside = e.target.closest('.filter-menu') || e.target.closest('.filter-button');
-  if (!inside) filterMenu.hidden = true;
+  if (!inside) hide(filterMenu);
 });
 
 // update filters when checkboxes change
-filterMenu.addEventListener('change', applyFilters);
+filterMenu?.addEventListener('change', applyFilters);
 
 // update filters as you type in search bar (optional)
 searchInput?.addEventListener('input', applyFilters);
 
 // the main filter function
 function applyFilters() {
+  if (!filterMenu) return;
+
   // which boxes are checked
   const active = [...filterMenu.querySelectorAll('input[type="checkbox"]:checked')]
     .map(cb => cb.value.toLowerCase());
@@ -76,3 +93,34 @@ function applyFilters() {
 
 // run once when the page first loads
 applyFilters();
+
+
+// ---------- 3-line menu dropdown ----------
+const menuBtn = document.querySelector('.menu-button');
+const menuDropdown = document.querySelector('.menu-dropdown');
+
+menuBtn?.addEventListener('click', (e) => {
+  e.stopPropagation(); // don't trigger document click
+  if (menuDropdown.hidden || menuDropdown.style.display === 'none') {
+    show(menuDropdown);
+  } else {
+    hide(menuDropdown);
+  }
+});
+
+// close both dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+  const insideMenu = e.target.closest('.menu-button') || e.target.closest('.menu-dropdown');
+  if (!insideMenu) hide(menuDropdown);
+
+  const insideFilter = e.target.closest('.filter-button') || e.target.closest('.filter-menu');
+  if (!insideFilter) hide(filterMenu);
+});
+
+// optional: close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    hide(menuDropdown);
+    hide(filterMenu);
+  }
+});
