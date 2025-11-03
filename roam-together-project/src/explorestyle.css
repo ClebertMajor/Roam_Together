@@ -1,143 +1,189 @@
 /* Basic Reset and Font Setup */
 body {
-  
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9; /* Light background for the page */
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
 }
 
 .explore-page-container {
-    max-width: 600px; /* Simulating a typical mobile screen width */
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* Page Header Styling */
+/* Header */
 .page-header {
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    border: 2px solid #a0c4ff; /* Light blue border from the sketch */
-    display: inline-block;
-    border-radius: 8px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block; /* To center the block element */
-    width: fit-content;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border: 2px solid #a0c4ff;
+  border-radius: 8px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .page-header h1 {
-    font-size: 1.5em;
-    font-weight: normal;
-    color: #333;
-    margin: 0;
+  font-size: 1.5em;
+  color: #333;
+  margin: 0;
 }
 
-/* Main Bar (Search, Filter, Menu) Styling */
+/* Top bar */
 .main-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
-  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  position: relative; /* important for dropdown positioning */
 }
 
-/* Search Bar Styling */
+/* Search */
 .search-bar-container {
-    flex-grow: 1; /* Allows the search bar to take up most of the space */
-    display: flex;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    overflow: hidden;
+  flex-grow: 1;
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .search-input {
-    flex-grow: 1;
-    border: none;
-    padding: 10px 15px;
-    outline: none;
-    font-size: 1em;
+  flex-grow: 1;
+  border: none;
+  padding: 10px 15px;
+  outline: none;
+  font-size: 1em;
 }
 
 .search-button {
-    background-color: transparent;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    color: #666;
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  color: #666;
 }
 
-/* Filter Button Styling */
+/* Filter */
 .filter-button {
-    background-color: transparent;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 1em;
-    color: #333;
-    white-space: nowrap; /* Prevents text from wrapping */
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #333;
+  white-space: nowrap;
 }
 
-/* Menu Button Styling */
+/* Menu button */
 .menu-button {
-    background-color: transparent;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 1.2em;
-    color: #333;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #333;
 }
 
-/* Content Grid for Cards */
+/* Dropdown menu */
+.menu-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  z-index: 10;
+  animation: fadeIn 0.2s ease;
+}
+
+.menu-dropdown a {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+
+.menu-dropdown a:last-child {
+  border-bottom: none;
+}
+
+.menu-dropdown a:hover {
+  background-color: #f4f4f9;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Filter dropdown */
+.filter-menu {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 5;
+}
+
+/* Cards grid */
 .content-grid {
-    display: grid;
-    /* Creates columns that are suitable for the available space */
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
 }
 
-/* Individual Content Card Styling */
 .content-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 10px;
 }
 
 .picture-placeholder {
-    height: 120px; /* Fixed height for the picture box */
-    background-color: #e0e0e0; /* Light gray background */
-    border: 1px dashed #999; /* Dashed border to look like a placeholder */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #666;
-    margin-bottom: 10px;
-    font-weight: bold;
+  height: 120px;
+  background-color: #e0e0e0;
+  border: 1px dashed #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .card-info h3 {
-    font-size: 1.1em;
-    margin: 0 0 5px 0;
-    color: #000;
+  font-size: 1.1em;
+  margin: 0 0 5px 0;
+  color: #000;
 }
 
-.card-info .destination-info {
-    font-size: 0.9em;
-    color: #666;
-    margin: 0 0 3px 0;
+.destination-info {
+  font-size: 0.9em;
+  color: #666;
+  margin: 0 0 3px 0;
 }
 
-.card-info .short-info {
-    font-size: 0.8em;
-    color: #999;
-    margin: 0;
+.short-info {
+  font-size: 0.8em;
+  color: #999;
+  margin: 0;
 }
