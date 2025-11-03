@@ -4,7 +4,7 @@ Roam_Together is a simple static website that helps users find and connect with 
 
 ## Quick preview (open locally)
 
-use VS Code's Live Server extension 
+use VS Code's Live Server extension on the index.html file
 ```
 ## File overview
 
