@@ -1,247 +1,535 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Roam Together | Meet, Connect, and Explore</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roam Together | Meet, Connect, and Explore</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- AOS (scroll animations) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Leaflet (map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-
-    <link rel="stylesheet" href="css/style.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
-    <header class="header" id="home">
-        <video class="hero-video" autoplay muted loop>
-            <source src="css/images/hero.mp4" type="video/mp4" />
-        </video>
+  <!-- ========================= HEADER ========================= -->
+  <header class="header" id="home">
+    <video class="hero-video" autoplay muted loop playsinline src="css/images/hero.mp4"></video>
 
-        <nav class="main-nav">
-            <a href="#" class="brand">
-                <img src="css/images/logo.png" class="brand-logo" alt="Roam Together" />
-                <span class="brand-name">Roam Together</span>
-            </a>
-            
-            <button
-                class="menu-toggle"
-                id="menu-toggle"
-                aria-label="Toggle navigation"
-                onclick="document.getElementById('nav-links').classList.toggle('active');
-                         this.querySelector('i').classList.toggle('fa-bars');
-                         this.querySelector('i').classList.toggle('fa-xmark');"
-            >
-                <i class="fa-solid fa-bars"></i>
-            </button>
+    <nav class="main-nav">
+      <a href="#home" class="brand">
+        <img src="css/images/logo.png" alt="Roam Together" class="brand-logo">
+        <span class="brand-name desktop-only">Roam Together</span>
+      </a>
 
-            <ul class="nav-links" id="nav-links"> 
-                <li><a href="#explore-cards">Discover</a></li>
-                <li><a href="#connect">Connect</a></li>
-                <li><a href="#map">Map</a></li> 
-                <li><a href="#testimonials">Stories</a></li>
-            </ul>
-            
-            <a href="#signup-modal" class="signup-btn desktop-only">Join Now</a>
-        </nav>
+      <div class="nav-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search destinations, users..." />
+      </div>
 
-        <div class="hero-text">
-            <h1>Travel the World, Together 🌍</h1>
-            <p>Meet new people, explore new experiences, and make unforgettable memories along the way.</p>
-            <a href="#explore-cards" class="cta-btn">Start Exploring</a>
-        </div>
-    </header>
+      <div class="nav-controls" id="nav-controls">
+        <ul class="nav-links">
+          <li><a href="#explore-section">Discover</a></li>
+          <li><a href="#rt-features">Why Roam Together</a></li>
+          <li><a href="#connect">Connect</a></li>
+          <li><a href="#map">Map</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+        <a href="#signup-modal" class="signup-btn">Join Now</a>
+      </div>
 
-    <section class="explore-cards" id="explore-cards">
-        <h2 class="section-title gradient-title" data-aos="fade-up">Meet. Connect. Experience Together.</h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Discover authentic connections and unforgettable adventures with travelers from around the world.
-        </p>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
 
-        <div class="explore-carousel">
-            <div class="explore-track">
-                <div class="cutout-card" data-aos="fade-up">
-                    <div class="card-image">
-                        <img src="css/images/photo10.png" alt="Adventure" class="bg-img" />
-                        <img src="css/images/photo2.1.jpg" alt="Friends hiking" class="cutout-img" />
-                    </div>
-                    <a href="#" class="card-title">Find Travel Partners for Your Next Trip</a>
-                </div>
-
-                <div class="cutout-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-image">
-                        <img src="css/images/photo2.2.jpg" alt="Cooking Class" class="bg-img" />
-                        <img src="css/images/photo2.3.jpg" alt="Cooking Together" class="cutout-img" />
-                    </div>
-                    <a href="#" class="card-title">Join Local Food & Culture Experiences</a>
-                </div>
-
-                <div class="cutout-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-image">
-                        <img src="css/images/photo2.4.jpg" alt="Bonfire Meetup" class="bg-img" />
-                        <img src="css/images/photo2.5.jpg" alt="Beach Bonfire" class="cutout-img" />
-                    </div>
-                    <a href="#" class="card-title">Meet New Friends at Global Events</a>
-                </div>
-
-                <div class="cutout-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-image">
-                        <img src="css/images/photo2.6.jpg" alt="Story Sharing" class="bg-img" />
-                        <img src="css/images/photo2.7.jpg" alt="Travel Story" class="cutout-img" />
-                    </div>
-                    <a href="#" class="card-title">Share Your Story & Inspire Others</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="connect" id="connect">
-        <h2 class="section-title gradient-title" data-aos="fade-up">Connect with Travelers</h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Find like-minded explorers and discover shared itineraries.
-        </p>
-
-        <div class="connect-slider">
-            <div class="slider-wrapper css-snap-wrapper"> 
-                <div class="slide css-snap-slide">
-                    <img src="css/images/photo2.3.jpg" alt="Bali travelers" />
-                    <div class="slide-info">
-                        <h4>Ava</h4>
-                        <p>Bali — “Met my best friend through Roam Together.”</p>
-                    </div>
-                </div>
-
-                <div class="slide css-snap-slide">
-                    <img src="css/images/photo2.5.jpg" alt="Paris adventure" />
-                    <div class="slide-info">
-                        <h4>Lia</h4>
-                        <p>Paris — “We explored hidden cafés and markets together.”</p>
-                    </div>
-                </div>
-
-                <div class="slide css-snap-slide">
-                    <img src="css/images/photo2.7.jpg" alt="Tokyo adventure" />
-                    <div class="slide-info">
-                        <h4>Sophia</h4>
-                        <p>Tokyo — “So glad I had a fellow geek to explore with.”</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="map-section" id="map">
-        <h2 class="section-title gradient-title" data-aos="fade-up">Explore Destinations Together</h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Use the map to find other travelers and upcoming trips around the world.
-        </p>
-        <div id="travelMap" data-aos="fade-up" data-aos-delay="200"></div>
-    </section>
-
-    <section class="testimonials" id="testimonials">
-        <h2 class="section-title gradient-title" data-aos="fade-up">What Travelers Say</h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Real connections. Real adventures. Real stories from our community.
-        </p>
-
-        <div class="testimonial-grid">
-            <div class="t-card" data-aos="fade-up">
-                <p>“I met my best friend in Bali here. We surfed every morning!”</p>
-                <div class="t-meta">
-                    <img src="css/images/photo2.6.jpg" alt="Ava">
-                    <span>Ava — Bali</span>
-                </div>
-            </div>
-
-            <div class="t-card" data-aos="fade-up" data-aos-delay="100">
-                <p>“Paris was a dream. Found a foodie buddy and we ate our way through the city.”</p>
-                <div class="t-meta">
-                    <img src="css/images/photo2.4.jpg" alt="Lia">
-                    <span>Lia — Paris</span>
-                </div>
-            </div>
-
-            <div class="t-card" data-aos="fade-up" data-aos-delay="200">
-                <p>“Tokyo’s tech scene is insane. So glad I had a fellow geek to explore with.”</p>
-                <div class="t-meta">
-                    <img src="css/images/photo2.7.jpg" alt="Sophia">
-                    <span>Sophia — Tokyo</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <h4>Roam Together</h4>
-        <p>Connecting explorers, one journey at a time.</p>
-        <div class="icons">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-        </div>
-    </footer>
-
-    <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'});">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
-
-    <div id="signup-modal" class="modal">
-        <div class="modal-content">
-            <a href="#" class="modal-close" aria-label="Close modal">&times;</a>
-            <div class="modal-header">
-                <h3>Join Roam Together 🚀</h3>
-                <p>Ready to meet your next travel buddy? Sign up for exclusive access.</p>
-            </div>
-            <form class="modal-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <input type="password" placeholder="Choose Password" required>
-                <button type="submit" class="cta-btn">Create Account</button>
-            </form>
-        </div>
+    <div class="hero-text" data-aos="fade-up" data-aos-delay="50">
+      <h1>Travel the World, Together 🌍</h1>
+      <p>Meet new people, explore new experiences, and make unforgettable memories along the way.</p>
     </div>
-    
-    <script>
-        // Initialize AOS
-        document.addEventListener("DOMContentLoaded", () => {
-            AOS.init({ duration: 800, once: true });
-            
-            // CSS Only Modal Fix: Allows closing the modal with the escape key (minimal JS)
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && location.hash === '#signup-modal') {
-                    history.pushState('', document.title, window.location.pathname);
-                }
-            });
-        });
 
-        // Leaflet map initialization
-        const map = L.map("travelMap").setView([20, 0], 2);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution:
-                '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-        }).addTo(map);
+    <!-- HERO SEARCH BAR -->
+    <form class="hero-searchbar" id="trip-search">
+      <div class="hero-search-inner">
 
-        const travelers = [
-            { name: "Ava", city: "Bali", coords: [-8.3405, 115.092] },
-            { name: "Lia", city: "Paris", coords: [48.8566, 2.3522] },
-            { name: "Sophia", city: "Tokyo", coords: [35.6762, 139.6503] }
-        ];
+        <!-- WHERE TO -->
+        <div class="search-col">
+          <label for="search-location">Where to?</label>
+          <select id="search-location" name="location">
+            <option value="" selected disabled>Add location</option>
+            <option value="paris">Paris, France</option>
+            <option value="tokyo">Tokyo, Japan</option>
+            <option value="bali">Bali, Indonesia</option>
+            <option value="rome">Rome, Italy</option>
+            <option value="cancun">Cancún, Mexico</option>
+            <option value="nyc">New York City, USA</option>
+          </select>
+        </div>
 
-        travelers.forEach(t => {
-            L.marker(t.coords).addTo(map).bindPopup(`<strong>${t.name}</strong><br>${t.city}`);
-        });
-        
-        // Smooth scroll initialization (Lenis)
-        const lenis = new Lenis();
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-    </script>
+        <div class="divider"></div>
+
+        <!-- DATES -->
+        <div class="search-col">
+          <label>Dates</label>
+          <div class="search-dates">
+            <input type="date" id="search-start" name="start" />
+            <span class="date-separator">–</span>
+            <input type="date" id="search-end" name="end" />
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- TRAVEL STYLE -->
+        <div class="search-col">
+          <label for="search-style">Travel style</label>
+          <select id="search-style" name="style">
+            <option value="" selected disabled>Select style</option>
+            <option value="solo">Solo, independent</option>
+            <option value="chill">Chill & beachy</option>
+            <option value="adventure">Adventure & outdoors</option>
+            <option value="luxury">Luxury & bougie</option>
+            <option value="budget">Budget & backpacking</option>
+            <option value="food">Food & culture focused</option>
+          </select>
+        </div>
+
+        <!-- CTA -->
+        <button class="search-go" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Find Trips</span>
+        </button>
+
+      </div>
+    </form>
+  </header>
+
+  <!-- ========================= FEATURE SECTION ========================= -->
+  <section class="rt-feature-section">
+    <div class="rt-feature-heading">
+      <h2 class="rt-feature-headings">
+        <span>Your Trusted Travel Companion Platform</span>
+      </h2>
+    </div>
+
+    <p class="rt-feature-description">
+      Whether you're planning solo adventures, group trips, or looking to meet fellow explorers,
+      Roam Together helps you connect, match, and travel with confidence.
+    </p>
+
+    <div class="rt-feature-grid">
+      <div class="rt-feature-item">
+        <img src="css/images/verified.png" class="rt-feature-icon" alt="Verified travelers icon">
+        <h3 class="rt-feature-title">Verified Travelers</h3>
+        <p class="rt-feature-text">
+          Meet real, verified travelers who share your travel style, safety priorities, and vibe.
+        </p>
+      </div>
+
+      <div class="rt-feature-item">
+        <img src="css/images/hand-holding-smartphone-smart-home.png" class="rt-feature-icon" alt="Smart matching icon">
+        <h3 class="rt-feature-title">Smart Travel Matching</h3>
+        <p class="rt-feature-text">
+          Our matching system connects you with travelers heading to similar destinations at similar times.
+        </p>
+      </div>
+
+      <div class="rt-feature-item">
+        <img src="css/images/instant.png" class="rt-feature-icon" alt="Chat icon">
+        <h3 class="rt-feature-title">Instant Messaging</h3>
+        <p class="rt-feature-text">
+          Chat securely with your matches before you plan, book, or share itineraries.
+        </p>
+      </div>
+
+      <div class="rt-feature-item">
+        <img src="css/images/meeting.png" class="rt-feature-icon" alt="Group trips icon">
+        <h3 class="rt-feature-title">Curated Group Trips</h3>
+        <p class="rt-feature-text">
+          Join curated itineraries designed for different travel styles, from slow travel to high-adventure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= EXPLORE SECTION ========================= -->
+  <section class="rt-pastel-section" id="explore-section">
+    <h2 class="rt-pastel-title gradient-title">Discover Your Next Adventure</h2>
+    <p class="rt-pastel-sub">
+      Browse curated trips and meet travelers who match your vibe, pace, and interests.
+    </p>
+
+    <div class="rt-pastel-grid">
+
+      <div class="rt-pastel-card">
+        <img src="css/images/city.jpg" class="rt-pastel-img" alt="City skyline at night">
+        <div class="rt-pastel-content">
+          <div class="rt-pastel-label">City Vibes</div>
+          <h3 class="rt-pastel-title-sm">City Escapes & Nightlife</h3>
+          <p class="rt-pastel-desc">
+            Match with explorers who love rooftop bars, skyline views, art districts, and after-dark adventures.
+          </p>
+        </div>
+      </div>
+
+      <div class="rt-pastel-card">
+        <img src="css/images/beach2.jpg" class="rt-pastel-img" alt="Beach with turquoise water">
+        <div class="rt-pastel-content">
+          <div class="rt-pastel-label">Beach</div>
+          <h3 class="rt-pastel-title-sm">Tropical Getaways</h3>
+          <p class="rt-pastel-desc">
+            Think palm trees, sunsets, resort pools, and soft itineraries that balance relaxation and fun.
+          </p>
+        </div>
+      </div>
+
+      <div class="rt-pastel-card">
+        <img src="css/images/hiking2.jpg" class="rt-pastel-img" alt="Mountain trail">
+        <div class="rt-pastel-content">
+          <div class="rt-pastel-label">Adventure</div>
+          <h3 class="rt-pastel-title-sm">Hiking & Nature Retreats</h3>
+          <p class="rt-pastel-desc">
+            Match with hikers and outdoor lovers for trails, cabins, wellness retreats, and scenic viewpoints.
+          </p>
+        </div>
+      </div>
+
+      <div class="rt-pastel-card">
+        <img src="css/images/food.jpg" class="rt-pastel-img" alt="Food and culture">
+        <div class="rt-pastel-content">
+          <div class="rt-pastel-label">Local Culture</div>
+          <h3 class="rt-pastel-title-sm">Cultural & Food Tours</h3>
+          <p class="rt-pastel-desc">
+            Join foodies and culture lovers for markets, museums, street food, and immersive neighborhoods.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================= WHY CHOOSE ROAM TOGETHER ========================= -->
+  <section class="rt-features" id="rt-features">
+    <div class="rt-features-title">
+      <h2 class="rt-features-headings">
+        <span>Why Choose Roam Together?</span>
+      </h2>
+    </div>
+
+    <div class="rt-features-grid">
+      <div class="rt-feature">
+        <div class="rt-icon">
+          <i class="fa-solid fa-globe"></i>
+        </div>
+        <h3 class="rt-title">Global Travel Matches</h3>
+        <p class="rt-desc">
+          Find verified travelers heading to the same destination as you — instantly.
+        </p>
+      </div>
+
+      <div class="rt-feature">
+        <div class="rt-icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <h3 class="rt-title">Smart Compatibility</h3>
+        <p class="rt-desc">
+          Match based on interests, pace, vibe, safety preferences, and travel style.
+        </p>
+      </div>
+
+      <div class="rt-feature">
+        <div class="rt-icon">
+          <i class="fa-solid fa-shield-heart"></i>
+        </div>
+        <h3 class="rt-title">Safety-First Design</h3>
+        <p class="rt-desc">
+          Profile verification, traveler badges, and safety tools built into the platform.
+        </p>
+      </div>
+
+      <div class="rt-feature">
+        <div class="rt-icon">
+          <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+        <h3 class="rt-title">Personalized Trips</h3>
+        <p class="rt-desc">
+          Discover curated trips, groups, and experiences tailored to your interests.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CONNECT SECTION ========================= -->
+  <section class="section connect" id="connect">
+    <div class="section-inner">
+      <h2 class="section-title gradient-title" data-aos="fade-up">
+        Connect & Explore Together
+      </h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Join unique experiences and meet travelers from around the world.
+      </p>
+
+      <div class="connect-slider" data-aos="zoom-in">
+        <div class="css-snap-wrapper" id="connect-slider-wrapper">
+          <div class="css-snap-slide">
+            <img src="css/images/hiking.jpg" alt="Traveler hiking in the Alps">
+            <div class="slide-overlay">
+              <div class="slide-info">
+                <h3>Hiker's Meetup</h3>
+                <p>The Alps, Switzerland</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="css-snap-slide">
+            <img src="css/images/boat.jpg" alt="Mediterranean boat tour">
+            <div class="slide-overlay">
+              <div class="slide-info">
+                <h3>Coastal Explorer Crew</h3>
+                <p>Mediterranean Sea</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="css-snap-slide">
+            <img src="css/images/temple.jpg" alt="Tokyo temple tour">
+            <div class="slide-overlay">
+              <div class="slide-info">
+                <h3>Guided Temple Tour</h3>
+                <p>Tokyo, Japan</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="css-snap-slide">
+            <img src="css/images/market.jpg" alt="Bangkok street food tour">
+            <div class="slide-overlay">
+              <div class="slide-info">
+                <h3>Bangkok Street Food Tour</h3>
+                <p>Bangkok, Thailand</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="css-snap-slide">
+            <img src="css/images/ski.jpg" alt="Ski trip in the Rockies">
+            <div class="slide-overlay">
+              <div class="slide-info">
+                <h3>Rockies Ski Adventure</h3>
+                <p>Colorado, USA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-arrows">
+          <button class="arrow prev"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="arrow next"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <div class="slider-dots" id="slider-dots"></div>
+    </div>
+  </section>
+
+  <!-- ========================= MAP SECTION ========================= -->
+  <section class="section map-section" id="map">
+    <div class="section-inner">
+      <h2 class="section-title" data-aos="fade-up">
+        Explore Destinations Together
+      </h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Use the map to find other travelers and upcoming trips around the world.
+      </p>
+
+      <div id="travelMap" data-aos="fade-up" data-aos-delay="200"></div>
+    </div>
+  </section>
+
+  <!-- ========================= TESTIMONIALS ========================= -->
+  <section class="section testimonials" id="testimonials">
+    <div class="section-inner">
+      <h2 class="section-title gradient-title" data-aos="fade-up">Loved by Travelers Worldwide ✨</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Hear from travelers who found their perfect adventure buddies on Roam Together.
+      </p>
+
+      <div class="testimonial-grid" data-aos="fade-up" data-aos-delay="150">
+        <div class="t-card">
+          <p>"I found my perfect hiking group for a trip to Switzerland. We still travel together!"</p>
+          <div class="t-meta">
+            <img src="css/images/priya.jpg" alt="Traveler photo">
+            <div>
+              <strong>Alex C.</strong>
+              <div>Solo Traveler</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p>"The platform made it so easy to match with people who share my travel style."</p>
+          <div class="t-meta">
+            <img src="css/images/jordan.jpg" alt="Traveler photo">
+            <div>
+              <strong>Jordan M.</strong>
+              <div>Digital Nomad</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p>"We planned a group trip to Tokyo and it was the most seamless experience ever."</p>
+          <div class="t-meta">
+            <img src="css/images/alex.jpg" alt="Traveler photo">
+            <div>
+              <strong>Priya R.</strong>
+              <div>Food &amp; Culture Enthusiast</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="footer">
+    <p>&copy; 2025 Roam Together. All rights reserved.</p>
+    <div class="icons">
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+    </div>
+  </footer>
+
+  <!-- ========================= MODAL ========================= -->
+  <div id="signup-modal" class="modal">
+    <div class="modal-content">
+      <a href="#home" class="modal-close">&times;</a>
+      <div class="modal-header">
+        <h3>Join Roam Together</h3>
+        <p>Create your profile and start matching with travelers worldwide.</p>
+      </div>
+
+      <form class="modal-form">
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="text" placeholder="Preferred Travel Style" />
+        <button type="submit" class="cta-btn">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================= BACK TO TOP ========================= -->
+  <button class="back-to-top" id="backToTop">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ========================= SCRIPTS ========================= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    AOS.init({ once: true });
+
+    /* Mobile Nav Toggle */
+    const menuToggle = document.getElementById('menu-toggle');
+    const navControls = document.getElementById('nav-controls');
+    menuToggle.addEventListener('click', () => {
+      navControls.classList.toggle('active');
+      const icon = menuToggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-xmark');
+    });
+
+    /* Back to Top */
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* Hero Search: demo handler */
+    const tripSearch = document.getElementById('trip-search');
+    tripSearch.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const location = document.getElementById('search-location').value;
+      const start = document.getElementById('search-start').value;
+      const end = document.getElementById('search-end').value;
+      const style = document.getElementById('search-style').value;
+      console.log({ location, start, end, style });
+      alert('Search submitted! (Hook this up to your backend later.)');
+    });
+
+    /* Connect Slider */
+    const wrapper = document.getElementById('connect-slider-wrapper');
+    const slides = Array.from(wrapper.querySelectorAll('.css-snap-slide'));
+    const dotsContainer = document.getElementById('slider-dots');
+    const prevBtn = document.querySelector('.arrow.prev');
+    const nextBtn = document.querySelector('.arrow.next');
+    let currentIndex = 0;
+
+    slides.forEach((_, idx) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (idx === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(idx));
+      dotsContainer.appendChild(dot);
+    });
+    const dots = Array.from(dotsContainer.querySelectorAll('.dot'));
+
+    function goToSlide(index) {
+      currentIndex = index;
+      const offset = slides[index].offsetLeft;
+      wrapper.scrollTo({ left: offset, behavior: 'smooth' });
+      dots.forEach(d => d.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+
+    prevBtn.addEventListener('click', () => {
+      const next = (currentIndex - 1 + slides.length) % slides.length;
+      goToSlide(next);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const next = (currentIndex + 1) % slides.length;
+      goToSlide(next);
+    });
+
+    wrapper.addEventListener('scroll', () => {
+      const scrollPos = wrapper.scrollLeft;
+      let closestIndex = 0;
+      let closestDist = Infinity;
+      slides.forEach((slide, idx) => {
+        const dist = Math.abs(slide.offsetLeft - scrollPos);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIndex = idx;
+        }
+      });
+      if (closestIndex !== currentIndex) {
+        currentIndex = closestIndex;
+        dots.forEach(d => d.classList.remove('active'));
+        dots[currentIndex].classList.add('active');
+      }
+    });
+
+    /* Leaflet Map */
+    if (window.L) {
+      const map = L.map('travelMap').setView([20, 0], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19
+      }).addTo(map);
+    }
+  </script>
 </body>
 </html>
+

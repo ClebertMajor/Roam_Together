@@ -1,3 +1,14 @@
+:root{
+    --deep-navy: #0b1222;
+    --emerald: #2e8b57;
+    --mint: #10b981;
+    --gold: #efa331;
+    --coral: #ff8c69;
+    --offwhite: #f9fbfc;
+    --white: #ffffff;
+    --deep-navy-rgb: 11, 18, 34;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -7,7 +18,7 @@
 .header{
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(images/background.jpg);
+    background-image: linear-gradient(rgba(var(--deep-navy-rgb), 0.7), rgba(var(--deep-navy-rgb), 0.7)), url(images/background.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -35,7 +46,7 @@ opacity: 0.5;
     position: relative;
 }
 .nav-links ul li a{
-    color:aliceblue;
+    color: var(--offwhite);
     text-decoration: none;
     font-size: 15px;
 }
@@ -44,7 +55,7 @@ opacity: 0.5;
     content: '';
     width: 0%;
     height:2px;
-    background: #165bd1;
+    background: var(--mint);
     display: block;
     margin: auto;
     transition:0.5s;
@@ -56,7 +67,7 @@ opacity: 0.5;
 
 .text-box{
     width: 90%;
-    color: #fff;
+    color: var(--offwhite);
     position: absolute;
     text-align: center;
     top: 35%;
@@ -78,8 +89,8 @@ opacity: 0.5;
 .contact-button{
     display: inline-block;
     text-decoration: none;
-    color: #fff;
-    border: 1px solid #fff;
+    color: var(--offwhite);
+    border: 1px solid var(--offwhite);
     padding:12px 34px;
     font-size: 13px;
     background: transparent;
@@ -87,7 +98,7 @@ opacity: 0.5;
 }
 
 .contact-button:hover{
-    border: 1px solid #165bd1;
-    background:#165bd1;
+    border: 1px solid var(--mint);
+    background: var(--mint);
     transition: 1s;
 }
