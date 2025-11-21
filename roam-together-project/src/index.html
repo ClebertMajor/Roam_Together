@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="explore-page-container">
+        
+        <header class="page-header">
+            <h1>Explore page</h1>
+        </header>
+
+        <div class="main-bar">
+            <div class="search-bar-container">
+                <input type="text" placeholder="Search destinations..." class="search-input">
+                <button class="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <button class="filter-button">
+                Filter
+            </button>
+          <div class="filter-menu" hidden>
+  <label><input type="checkbox" value="city" checked> City</label>
+  <label><input type="checkbox" value="beach" checked> Beach</label>
+  <label><input type="checkbox" value="mountain" checked> Mountain</label>
+  <label><input type="checkbox" value="rural" checked> Rural</label>
+</div>
+            
+            <button class="menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <main class="content-grid">
+            
+            <div class="content-card" data-tags = "city">
+                <div class="picture-placeholder">Picture</div>
+                <div class="card-info">
+                    <h3>Alex Johnson</h3>
+                    <p class="destination-info">Paris, France</p>
+                    <p class="short-info">Photographer & Coffee Enthusiast</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="picture-placeholder">Picture</div>
+                <div class="card-info" data-tags= "rural">
+                    <h3>Chloe Nguyen</h3>
+                    <p class="destination-info">Toronto, Canada </p>
+                    <p class="short-info">Travel Blogger</p>
+                </div>
+            </div>
+            
+            </main>
+    </div>
+
+</body>
+</html>
