@@ -1,0 +1,183 @@
+:root {
+  --deep-navy: #0b1222;
+  --emerald: #2e8b57;
+  --mint: #10b981;
+  --gold: #efa331;
+  --coral: #ff8c69;
+  --offwhite: #f9fbfc;
+  --text-dark: #1c2635;
+  --text-light: #e9eff5;
+  --shadow: 0 10px 35px rgba(0,0,0,0.15);
+}
+
+body {
+  background: url("../images/profile_bg.webp") no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-light);
+}
+
+/* Dim overlay for readability */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 0;
+}
+
+header, .profile-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ----- HEADER ----- */
+header {
+  width: 100%;
+  background:  rgba(11, 18, 34, 0.7);
+  backdrop-filter: blur(4px);
+  color: var(--text-dark);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.logo-wrap {
+   display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+.nav-buttons a {
+  margin-left: 10px;
+  margin-right: 25px;
+  padding: 8px 12px;
+  text-decoration: none;
+  background: var(--emerald);
+  color: white;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.nav-buttons a:hover {
+  background: var(--mint);
+}
+
+/* ----- PROFILE BOX ----- */
+.profile-container {
+  background: rgba(249, 251, 252, 0.95);
+  color: var(--text-dark);
+  width: 90%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  margin-top: 140px;
+  margin-bottom: 40px;
+}
+
+h1 {
+  margin-bottom: 25px;
+  color: var(--emerald);
+}
+
+.profile-pic {
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;  /* small rounded corners */
+  object-fit: cover;
+  background: #ddd;
+  display: block;
+  margin: 0 auto 20px;
+  border: 4px solid var(--emerald);
+}
+
+/* User info spacing  */
+.user-info {
+  margin: 25px 0;
+  padding: 15px 18px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 12px;
+  line-height: 1.6;
+}
+
+.user-info div {
+  font-size: 17px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: left;
+  color: var(--text-dark);
+}
+
+.user-info div:last-child {
+  margin-bottom: 0;
+}
+/* ----- BIO LABEL ----- */
+label[for="bio"] {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-dark);
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding-left: 2px;
+}
+
+/* ----- BIO TEXTAREA (Upgraded Aesthetic) ----- */
+#bio {
+  width: 100%;
+  height: 180px; /* Larger writing space */
+  padding: 14px 16px;
+  font-size: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  resize: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-dark);
+  line-height: 1.5;
+
+  /* Soft inner depth */
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.08), var(--shadow);
+
+  transition: 0.25s ease;
+}
+
+/* Focus aesthetic */
+#bio:focus {
+  border-color: var(--emerald);
+  box-shadow: 0 0 10px rgba(46, 139, 87, 0.4);
+  background: white;
+  outline: none;
+}
+
+label[for="bio"],
+#bio {
+  display: block;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.profile-container label,
+.profile-container textarea {
+  flex: none !important; /* prevents flexbox pushing it right */
+}

@@ -31,43 +31,57 @@ body {
 
 /* Dark transparent overlay for readability */
 body::before {
-  content: "";
+ content: "";
   position: fixed;
   inset: 0;
-  background: rgba(11, 18, 34, 0.55);
-  z-index: -1;
+  background: rgba(0,0,0,0.45);
+  z-index: 0;
 }
 
 /* ===============================
-   HEADER (TRANSPARENT NAVY)
+   HEADER SECTION
 ================================*/
-.rt-header {
+header {
   width: 100%;
-  padding: 28px 20px;
+  background:  rgba(11, 18, 34, 0.7);
+  backdrop-filter: blur(4px);
+  color: var(--text-dark);
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-  background: rgba(11, 18, 34, 0.55); /* transparent navy */
-  backdrop-filter: blur(6px);
-
-  color: var(--offwhite);
+  box-shadow: var(--shadow);
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
 }
 
-.rt-header a {
-  color: var(--mint);
+.logo-wrap {
+   display: flex;
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
-  font-weight: 600;
-  margin-right: 40px;
-  transition: 0.3s;
+  color: #fff;
 }
 
-.rt-header a:hover {
-  color: var(--gold);
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+.nav-buttons a {
+  margin-left: 10px;
+  margin-right: 25px;
+  padding: 8px 12px;
+  text-decoration: none;
+  background: var(--emerald);
+  color: white;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.nav-buttons a:hover {
+  background: var(--mint);
 }
 
 /* ===============================
@@ -146,24 +160,29 @@ body::before {
    BUTTONS
 ================================*/
 .rt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--mint), var(--coral));
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 999px;
   border: none;
-  width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-
   font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(16,185,129,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
 }
 
 .rt-btn-mint {
-  background: var(--emerald);
-  color: white;
+font-size: 0.95rem;  
 }
 
 .rt-btn-mint:hover {
-  background: var(--mint);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(16,185,129,0.4);
 }
 
 /* ===============================

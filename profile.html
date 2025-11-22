@@ -2,82 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Profile - Roam Together</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roam Together – Profile</title>
+  <link rel="stylesheet" href="css/profile.css" />
 </head>
+
 <body>
+
+  <!-- ===== HEADER BAR ===== -->
   <header>
-    <div class="logo">🌍 Roam Together</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="browse.html">Browse</a>
-      <a href="about.html">About</a>
-    </nav>
+    <div class="logo-wrap">
+      <img src="css/images/logo.png" class="logo" alt="Roam Together Logo">
+    </div>
+
+    <div class="nav-buttons">
+      <a href="home.html">Home</a>
+      <a href="explore.html">Explore</a>
+    </div>
   </header>
 
-  <section class="profile-section">
-    <h2>Tell us about yourself ✨</h2>
+  <!-- ===== PROFILE BOX ===== -->
+  <div class="profile-container">
+    <h1>My Profile</h1>
 
-    <form class="profile-form">
-      <label for="photo">Profile Photo</label>
-      <input type="file" id="photo" accept="image/*" />
+    <img id="preview" class="profile-pic" src="" alt="Profile Picture" />
 
-      <label for="bio">Short Bio</label>
-      <textarea id="bio" placeholder="Write something fun about you..."></textarea>
+    <input type="file" id="upload" accept="image/*" />
 
-      <label>Select Your Interests</label>
-      <div class="interests">
-        <label><input type="checkbox" /> Hiking</label>
-        <label><input type="checkbox" /> Photography</label>
-        <label><input type="checkbox" /> Road Trips</label>
-        <label><input type="checkbox" /> Foodie</label>
-        <label><input type="checkbox" /> Music</label>
-        <label><input type="checkbox" /> Camping</label>
-      </div>
+    <div class="user-info">
+      <div><strong>Name:</strong> <span id="user-name">Loading...</span></div>
+      <div><strong>Travel Style:</strong> <span id="user-style">Loading...</span></div>
+    </div>
 
-      <button type="submit">Save Profile</button>
-    </form>
-  </section>
+    <label for="bio"><strong>Bio:</strong></label>
+    <textarea id="bio" placeholder="Write something about yourself..."></textarea>
 
-  <footer>
-    <p>&copy; 2025 Roam Together. Find someone to explore with.</p>
-  </footer>
+    <button id="saveBtn">Save Profile</button>
+  </div>
+
   <script>
-    document.getElementById("profile-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-  
-      const bio = document.getElementById("bio").value;
-      const interests = Array.from(document.querySelectorAll('#interests input[type="checkbox"]:checked'))
-                            .map(cb => cb.value);
-  
-      // Simulate photo upload (just saving filename, not actual image)
-      const photoInput = document.getElementById("photo");
-      const photo = photoInput.files[0] ? photoInput.files[0].name : "";
-  
-      // Get existing user
-      const user = JSON.parse(localStorage.getItem("roamUser"));
-  
-      if (!user) {
-        alert("No user found. Please sign in first.");
-        window.location.href = "login.html";
-        return;
+    // Preview Profile Picture
+    const upload = document.getElementById("upload");
+    const preview = document.getElementById("preview");
+
+    upload.addEventListener("change", function() {
+      const file = this.files[0];
+      if (file) {
+        preview.src = URL.createObjectURL(file);
       }
-  
-      // Update user profile info
-      const updatedUser = {
-        ...user,
-        bio,
-        interests,
-        photo
-      };
-  
-      // Save back to localStorage
-      localStorage.setItem("roamUser", JSON.stringify(updatedUser));
-  
-      alert("Profile saved successfully! 🎉");
     });
+
+    // Load User Info
+    document.getElementById("user-name").textContent =
+      localStorage.getItem("userName") || "Not set";
+
+    document.getElementById("user-style").textContent =
+      localStorage.getItem("travelStyle") || "Not set";
+
+    // Save Bio
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      const bio = document.getElementById("bio").value;
+      localStorage.setItem("userBio", bio);
+      alert("Profile saved!");
+    });
+
+    // Load Bio
+    document.getElementById("bio").value =
+      localStorage.getItem("userBio") || "";
   </script>
-  
+
 </body>
 </html>
