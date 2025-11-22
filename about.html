@@ -26,10 +26,37 @@
 Our website, Roam Together, is designed to bring together people who love to travel. Whether someone is planning a weekend road trip, backpacking abroad, or exploring their own city, the website helps them find travel companions with similar interests and itineraries. By connecting solo travelers with one another, the website creates a supportive community where journeys become more social, fun, and memorable
             </p>
             <a href = "" class ="contact-button">Contact Us</a>
-            
         </div>
 
-
     </section>
+
+    <div id = "contactPopUp" class = "modal">
+        <div class = "modal-content">
+            <span class = "close"> &times;</span>
+            <h2> Contact Us </h2>
+            <form>
+                <input type = "text" placeholder = "Enter your name" required>
+                <input type = "email" placeholder = "Enter your email" required>
+                <textarea placeholder = "Please enter your message here" required></textarea>
+                <button type = "submit" >Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('contactPopUp');
+        const btn = document.querySelector('.contact-button');
+        const span = document.querySelector('.close');
+
+        btn.onclick = (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+
+        };
+
+        window.onclick = (e) => {
+            if (e.target==modal) modal.style.display = 'none';
+        };
+    </script>
 </body>
 </html>
