@@ -1,0 +1,23 @@
+[
+  {
+    "cardname": "Alex Johnson",
+    "destination": "Paris, France",
+    "tags": "city",
+    "hobbies": "Photographer & Coffee Enthusiast",
+    "picture": "Profile Photo"
+  },
+  {
+    "cardname": "Chloe Nguyen", 
+    "destination": "Toronto, Canada",
+    "tags": "rural",
+    "hobbies": "Travel Blogger",
+    "picture": "Travel Photo"
+  },
+  {
+    "cardname": "Marcus Rivera",
+    "destination": "Barcelona, Spain", 
+    "tags": "beach,city",
+    "hobbies": "Food Explorer",
+    "picture": "Food Photo"
+  }
+]
