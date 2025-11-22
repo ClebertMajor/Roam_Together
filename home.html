@@ -544,6 +544,80 @@
       }).addTo(map);
     }
   </script>
+  <!-- ========================= -->
+<!-- 🚀 FIREBASE SIGNUP SCRIPT -->
+<!-- ========================= -->
+<script type="module">
+  /* IMPORT FIREBASE CONFIG */
+  import { auth, db } from "./js/firebaseConfig.js";
+
+  /* IMPORT AUTH & FIRESTORE METHODS */
+  import {
+    createUserWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+  import {
+    doc,
+    setDoc
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+
+  /* ------------------------ */
+  /*   SELECT SIGNUP FIELDS   */
+  /* ------------------------ */
+
+  // The modal form
+  const signupForm = document.querySelector("#signup-modal .modal-form");
+
+  // Inputs inside the modal
+  const nameInput = signupForm.querySelector("input[type='text']");
+  const emailInput = signupForm.querySelector("input[type='email']");
+  const passwordInput = signupForm.querySelector("input[type='password']");
+  const travelStyleSelect = signupForm.querySelector("#search-style");
+
+
+  /* ------------------------ */
+  /*   SIGN-UP HANDLER        */
+  /* ------------------------ */
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    const travelStyle = travelStyleSelect.value;
+
+    if (!travelStyle) {
+      alert("Please select a travel style.");
+      return;
+    }
+
+    try {
+      // Create Firebase user
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      const user = cred.user;
+
+      // Store user's profile in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        email,
+        travelStyle,
+        bio: "",
+        createdAt: new Date()
+      });
+
+      alert("Account created successfully!");
+
+      // Redirect to profile page
+      window.location.href = "profile.html";
+
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert(error.message);
+    }
+  });
+</script>
+
 </body>
 </html>
 

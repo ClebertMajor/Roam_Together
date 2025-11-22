@@ -58,28 +58,40 @@
     </footer>
 
     <!-- LOGIN SCRIPT -->
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function(e) {
-            e.preventDefault();
+    <script type="module">
+    /* IMPORT FIREBASE CONFIG */
+    import { auth } from "./js/firebaseConfig.js";
 
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value.trim();
+    /* IMPORT AUTH METHODS */
+    import {
+        signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-            const storedUser = JSON.parse(localStorage.getItem("rt-user"));
+    /* ------- LOGIN FORM HANDLER ------- */
+    const loginForm = document.getElementById("loginForm");
 
-            if (!storedUser) {
-                alert("No account found. Please sign up.");
-                return;
-            }
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-            if (email === storedUser.email && password === storedUser.password) {
-                localStorage.setItem("rt-loggedIn", "true");
-                window.location.href = "profile.html";
-            } else {
-                alert("Incorrect email or password.");
-            }
-        });
-    </script>
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        try {
+            // Attempt Firebase login
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+            // Login successful
+            console.log("Logged in:", userCredential.user.uid);
+
+            // Redirect to profile page
+            window.location.href = "profile.html";
+
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("Incorrect email or password, or account does not exist.");
+        }
+    });
+</script>
 
 </body>
 </html>

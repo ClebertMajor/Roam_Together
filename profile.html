@@ -40,36 +40,132 @@
     <button id="saveBtn">Save Profile</button>
   </div>
 
-  <script>
-    // Preview Profile Picture
-    const upload = document.getElementById("upload");
-    const preview = document.getElementById("preview");
+   <!-- ========================= -->
+  <!--     FIREBASE MODULE       -->
+  <!-- ========================= -->
+  <script type="module">
+  /* IMPORT FIREBASE CORE */
+  import { app, auth, db, storage } from "./js/firebaseConfig.js";
 
-    upload.addEventListener("change", function() {
-      const file = this.files[0];
-      if (file) {
-        preview.src = URL.createObjectURL(file);
+  /* FIREBASE AUTH + FIRESTORE METHODS */
+  import {
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+  import {
+    doc,
+    getDoc,
+    setDoc
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+  /* FIREBASE STORAGE METHODS */
+  import {
+    ref,
+    uploadBytes,
+    getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-storage.js";
+
+
+  /* --------------------------- */
+  /*   PROFILE PAGE ELEMENTS     */
+  /* --------------------------- */
+  const upload = document.getElementById("upload");
+  const preview = document.getElementById("preview");
+  const userNameSpan = document.getElementById("user-name");
+  const userStyleSpan = document.getElementById("user-style");
+  const bioTextarea = document.getElementById("bio");
+  const saveBtn = document.getElementById("saveBtn");
+
+  let currentUserId = null;
+  let selectedImageFile = null;
+
+
+  /* --------------------------- */
+  /*   IMAGE PREVIEW LOGIC       */
+  /* --------------------------- */
+  upload.addEventListener("change", function () {
+    selectedImageFile = this.files[0];  // store the image for saving
+
+    if (selectedImageFile) {
+      preview.src = URL.createObjectURL(selectedImageFile);
+    }
+  });
+
+
+  /* --------------------------- */
+  /*   ON USER LOGIN             */
+  /* --------------------------- */
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      // If not logged in, send back to login
+      window.location.href = "home.html";
+      return;
+    }
+
+    currentUserId = user.uid;
+
+    // Load Firestore profile data
+    const docRef = doc(db, "users", currentUserId);
+    const snap = await getDoc(docRef);
+
+    if (snap.exists()) {
+      const data = snap.data();
+
+      userNameSpan.textContent = data.name || "Not set";
+      userStyleSpan.textContent = data.travelStyle || "Not set";
+      bioTextarea.value = data.bio || "";
+
+      if (data.profilePicURL) {
+        preview.src = data.profilePicURL;
       }
-    });
 
-    // Load User Info
-    document.getElementById("user-name").textContent =
-      localStorage.getItem("userName") || "Not set";
+    } else {
+      // No Firestore doc yet
+      userNameSpan.textContent = user.email;
+      userStyleSpan.textContent = "Not set";
+      bioTextarea.value = "";
+    }
+  });
 
-    document.getElementById("user-style").textContent =
-      localStorage.getItem("travelStyle") || "Not set";
 
-    // Save Bio
-    document.getElementById("saveBtn").addEventListener("click", () => {
-      const bio = document.getElementById("bio").value;
-      localStorage.setItem("userBio", bio);
-      alert("Profile saved!");
-    });
+  /* --------------------------- */
+  /*   SAVE PROFILE (BIO + PIC)  */
+  /* --------------------------- */
+  saveBtn.addEventListener("click", async () => {
+    if (!currentUserId) {
+      alert("You must be logged in to save your profile.");
+      return;
+    }
 
-    // Load Bio
-    document.getElementById("bio").value =
-      localStorage.getItem("userBio") || "";
-  </script>
+    const newBio = bioTextarea.value.trim();
+    const userDocRef = doc(db, "users", currentUserId);
+
+    let profilePicURL = null;
+
+    /* ---- ONLY UPLOAD IF IMAGE SELECTED ---- */
+    if (selectedImageFile) {
+      const imageRef = ref(storage, `profilePictures/${currentUserId}/profile.jpg`);
+
+      // Upload image to Firebase Storage
+      await uploadBytes(imageRef, selectedImageFile);
+
+      // Get permanent download URL
+      profilePicURL = await getDownloadURL(imageRef);
+    }
+
+    /* ---- SAVE BIO + PROFILE PIC URL TO FIRESTORE ---- */
+    await setDoc(
+      userDocRef,
+      {
+        bio: newBio,
+        ...(profilePicURL ? { profilePicURL: profilePicURL } : {})
+      },
+      { merge: true }
+    );
+
+    alert("Profile saved!");
+  });
+</script>
 
 </body>
 </html>
