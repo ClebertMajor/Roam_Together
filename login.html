@@ -1,51 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Join Roam Together</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Roam Together</title>
+    <link rel="stylesheet" href="css/login.css">
 </head>
-<body>
-  <header>
-    <div class="logo">🌍 Roam Together</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-    </nav>
-  </header>
 
-  <section class="auth-section">
-    <div class="form-wrapper" id="signup-form-wrapper">
-      <h2>Join the adventure 💌</h2>
+<body class="rt-body">
 
-      <form id="signup-form">
-        <input type="text" id="signup-name" placeholder="Your Name" required />
-        <input type="email" id="signup-email" placeholder="Email Address" required />
-        <input type="password" id="signup-password" placeholder="Password" required />
-        <button type="submit">Sign Up</button>
-      </form>
+    <!-- HEADER -->
+    <header class="rt-header">
+        <div class="rt-logo">RoamTogether</div>
+        <nav class="rt-nav">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
 
-      <p class="switch-text">Already have an account? <a href="#">Log In</a></p>
-    </div>
+    <!-- MAIN LOGIN CONTAINER -->
+    <main class="rt-section-center">
+        <div class="rt-card rt-shadow rt-rounded rt-login-card">
 
-    <div class="form-wrapper hidden" id="login-form-wrapper">
-      <h2>Welcome back 👋</h2>
+            <h1 class="rt-title">Welcome Back</h1>
+            <p class="rt-muted">Log in to continue your journey</p>
 
-      <form id="login-form">
-        <input type="email" id="login-email" placeholder="Email Address" required />
-        <input type="password" id="login-password" placeholder="Password" required />
-        <button type="submit">Log In</button>
-      </form>
+            <form class="rt-form" id="loginForm">
+                <div class="rt-form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
 
-      <p class="switch-text">New here? <a href="#">Sign Up</a></p>
-    </div>
-  </section>
+                <div class="rt-form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
 
-  <footer>
-    <p>&copy; 2025 Roam Together. Find your travel match.</p>
-  </footer>
+                <button type="submit" class="rt-btn rt-btn-mint rt-btn-lg">
+                    Login
+                </button>
+            </form>
 
-  <script src="js/main.js"></script>
+            <p class="rt-muted rt-small">
+                Don’t have an account? 
+                <a href="home.html" class="rt-link-mint">Sign up</a>
+            </p>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="rt-footer">
+        <p>&copy; 2025 Roam Together • Travel with Friends</p>
+    </footer>
+
+    <!-- LOGIN SCRIPT -->
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            const storedUser = JSON.parse(localStorage.getItem("rt-user"));
+
+            if (!storedUser) {
+                alert("No account found. Please sign up.");
+                return;
+            }
+
+            if (email === storedUser.email && password === storedUser.password) {
+                localStorage.setItem("rt-loggedIn", "true");
+                window.location.href = "profile.html";
+            } else {
+                alert("Incorrect email or password.");
+            }
+        });
+    </script>
+
 </body>
 </html>

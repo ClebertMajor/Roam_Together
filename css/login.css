@@ -1,0 +1,204 @@
+/* ===============================
+   COLOR VARIABLES
+================================*/
+:root {
+  --deep-navy: #0b1222;
+  --emerald: #2e8b57;
+  --mint: #10b981;
+  --gold: #efa331;
+  --coral: #ff8c69;
+  --offwhite: #f9fbfc;
+  --text-dark: #1c2635;
+  --text-light: #e9eff5;
+  --shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* ===============================
+   GLOBAL PAGE STYLE
+================================*/
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+
+  /* YOUR BACKGROUND IMAGE */
+  background: url("../images/Login_background.jpg") no-repeat center center/cover;
+  min-height: 100vh;
+
+  /* subtle blur effect */
+  backdrop-filter: blur(3px);
+}
+
+/* Dark transparent overlay for readability */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 18, 34, 0.55);
+  z-index: -1;
+}
+
+/* ===============================
+   HEADER (TRANSPARENT NAVY)
+================================*/
+.rt-header {
+  width: 100%;
+  padding: 28px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  background: rgba(11, 18, 34, 0.55); /* transparent navy */
+  backdrop-filter: blur(6px);
+
+  color: var(--offwhite);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.rt-header a {
+  color: var(--mint);
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 40px;
+  transition: 0.3s;
+}
+
+.rt-header a:hover {
+  color: var(--gold);
+}
+
+/* ===============================
+   CENTER SECTION
+================================*/
+.rt-section-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 120px; /* to clear fixed header */
+}
+
+/* ===============================
+   LOGIN WHITE CARD
+================================*/
+.rt-login-card {
+  width: 380px;
+  padding: 40px 45px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+
+  box-shadow: var(--shadow);
+  text-align: center;
+
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.8s ease;
+}
+
+.rt-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--emerald);
+  margin-bottom: 8px;
+}
+
+.rt-muted {
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+/* ===============================
+   INPUT FIELDS
+================================*/
+.rt-form-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.rt-form-group label {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.rt-form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-top: 6px;
+  
+
+  border-radius: 12px;
+  border: 1px solid #dbe3ec;
+  font-size: 1rem;
+  background: white;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.rt-form-group input:focus {
+  outline: none;
+  border-color: var(--mint);
+  box-shadow: 0 4px 12px rgba(16,185,129,0.25);
+}
+
+/* ===============================
+   BUTTONS
+================================*/
+.rt-btn {
+  border: none;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+
+  font-weight: 700;
+}
+
+.rt-btn-mint {
+  background: var(--emerald);
+  color: white;
+}
+
+.rt-btn-mint:hover {
+  background: var(--mint);
+}
+
+/* ===============================
+   LINKS
+================================*/
+.rt-link-mint {
+  color: var(--coral);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rt-link-mint:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   FOOTER
+================================*/
+.rt-footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--offwhite);
+  margin-top: 20px;
+}
+
+/* ===============================
+   ANIMATION
+================================*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

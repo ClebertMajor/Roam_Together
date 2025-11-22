@@ -1,0 +1,13 @@
+[
+  {
+    "username": "clay",
+    "email": "clay@example.com",
+    "password": "clay",
+    "trip": {
+      "destination": "Paris",
+      "startDate": "2025-01-20",
+      "endDate": "2025-01-27",
+      "style": "Luxury"
+    }
+  }
+]
