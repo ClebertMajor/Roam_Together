@@ -3,13 +3,53 @@
     padding: 0;
 
 }
+.top-header{
+    width: 100%;
+    height: 60px;
+    background-color: #363434;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    position:fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
 
-.header{
+.top-header nav{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img {
+    max-height: 40px;
+    width: auto;
+    display:block;
+}
+.logo-container h2{
+    color: #e7b728;
+    margin-left: 10px;
+    font-size: 1.5rem;
+}
+
+.about-page-container {
     min-height: 100vh;
     width: 100%;
     background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(images/background.jpg);
     background-position: center;
     background-size: cover;
+    padding-top: 80px;
     position: relative;
 }
 nav {
@@ -25,32 +65,46 @@ opacity: 0.5;
 }
 
 .nav-links{
+    display:flex;
     flex:1;
-    text-align:right;
+    justify-content: flex-end;
+    gap: 20px;
 }
+
 .nav-links ul li{
     list-style: none;
     display: inline-block;
-    padding: 8px 12px;
+    padding: 0 20px;
     position: relative;
+    justify-content: flex-end;
+    margin:0;
+    
 }
-.nav-links ul li a{
+.nav-links a{
     color:aliceblue;
     text-decoration: none;
     font-size: 15px;
+    font-weight: 600;
+    font-family: 'Times New Roman', sans-serif;
+    transition: 0.3s;
+    position: relative;
+    padding-bottom: 4px;
+    
+    
 }
 
-.nav-links ul li::after{
+.nav-links a::after{
     content: '';
+    position:absolute;
+    left:0;
+    bottom: 0;
     width: 0%;
     height:2px;
     background: #165bd1;
-    display: block;
-    margin: auto;
     transition:0.5s;
 }
 
-.nav-links ul li:hover::after{
+.nav-links a:hover::after{
     width:100%;
 }
 
@@ -59,9 +113,9 @@ opacity: 0.5;
     color: #fff;
     position: absolute;
     text-align: center;
-    top: 35%;
-   left: 5%;
-    transform: translate (-50%, -50%);
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .text-box h1{
     font-size: 62px;
