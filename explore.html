@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Explore – Roam Together</title>
+
+  <link rel="stylesheet" href="css/explore.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+      <div class="logo-wrap">
+   <img src="css/images/logo.PNG" class="logo">
+    </div>
+
+    <div class="nav-buttons">
+      <a href="home.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="profile.html">Profile</a>
+
+    </div>
+  </header>
+
+  <!-- MAIN EXPLORE CONTAINER -->
+  <div class="explore-container">
+    <img id="user-pic" class="user-pic" src="" alt="User Picture">
+
+    <h2 id="user-name">Loading...</h2>
+    <p class="line"><strong>Travel Style:</strong> <span id="user-style"></span></p>
+    <p class="line"><strong>Destination:</strong> <span id="user-destination"></span></p>
+    <p class="line"><strong>Dates:</strong> <span id="user-dates"></span></p>
+
+    <div class="nav-controls">
+      <button id="prevBtn">Previous</button>
+      <button id="nextBtn">Next</button>
+    </div>
+  </div>
+
+  <script type="module" src="js/explore.js"></script>
+</body>
+</html>
