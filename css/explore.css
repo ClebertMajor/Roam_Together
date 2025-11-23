@@ -91,22 +91,72 @@ header {
   margin: 10px 0;
 }
 
-.nav-controls {
-  margin-top: 25px;
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+  gap: 25px;
 }
 
-.nav-controls button {
-  padding: 10px 14px;
-  background: var(--emerald);
-  border-radius: 8px;
-  color: white;
+.like, .dislike {
+  width: 70px;
+  height: 70px;
+  font-size: 30px;
+  border-radius: 50%;
   border: none;
   cursor: pointer;
-  font-size: 15px;
-  margin: 0 8px;
+  box-shadow: var(--shadow);
   transition: 0.2s ease;
 }
 
-.nav-controls button:hover {
+.like {
+  background: var(--emerald);
+  color: white;
+}
+
+.like:hover {
   background: var(--mint);
+  transform: scale(1.1);
+}
+
+.dislike {
+  background: var(--coral);
+  color: white;
+}
+
+.dislike:hover {
+  background: #ff6b4d;
+  transform: scale(1.1);
+}
+
+.match-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.match-card {
+  background: white;
+  color: var(--text-dark);
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  width: 80%;
+  max-width: 350px;
+  box-shadow: var(--shadow);
+}
+
+#closeMatchBtn {
+  margin-top: 15px;
+  padding: 8px 12px;
+  background: var(--emerald);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }

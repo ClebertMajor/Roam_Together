@@ -17,7 +17,7 @@
 
     <div class="nav-buttons">
       <a href="home.html">Home</a>
-      <a href="explore.html">Explore</a>
+      <a href="about.html">About</a>
       <a href="profile.html">Profile</a>
 
     </div>
@@ -32,12 +32,19 @@
     <p class="line"><strong>Destination:</strong> <span id="user-destination"></span></p>
     <p class="line"><strong>Dates:</strong> <span id="user-dates"></span></p>
 
-    <div class="nav-controls">
-      <button id="prevBtn">Previous</button>
-      <button id="nextBtn">Next</button>
+    <div class="action-buttons">
+        <button id="dislikeBtn" class="dislike">❌</button>
+        <button id="likeBtn" class="like">❤️</button>
     </div>
   </div>
 
+  <div id="matchPopup" class="match-popup">
+    <div class="match-card">
+        <h2>🎉 It's a Match!</h2>
+        <p>You and <span id="matchName"></span> liked each other.</p>
+        <button id="closeMatchBtn">Close</button>
+    </div>
+ </div>
   <script type="module" src="js/explore.js"></script>
 </body>
 </html>
