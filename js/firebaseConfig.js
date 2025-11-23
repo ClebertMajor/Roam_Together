@@ -6,13 +6,13 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/12.6.0/firebase
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-storage.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCGjh0Rg-ntj13zuaMAswJbeV24F4h8R10",
-  authDomain: "roam-together-81733.firebaseapp.com",
-  projectId: "roam-together-81733",
-  storageBucket: "roam-together-81733.firebasestorage.app",
-  messagingSenderId: "194350936784",
-  appId: "1:194350936784:web:6624d7545c5202cbafa4d5",
-  measurementId: "G-HHSMH2QTE3"
+  apiKey: "AIzaSyCqrbT2WlbHxsJkxuqtqeHplnxO5CpNd64",
+  authDomain: "roamtogether-91a56.firebaseapp.com",
+  projectId: "roamtogether-91a56",
+  storageBucket: "roamtogether-91a56.firebasestorage.app",
+  messagingSenderId: "1035575817678",
+  appId: "1:1035575817678:web:0a39827b7708b9c67ea79f",
+  measurementId: "G-YV32GEXE3J"
 };
 
 export const app = initializeApp(firebaseConfig);
