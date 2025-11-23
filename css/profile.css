@@ -81,6 +81,24 @@ header {
   background: var(--mint);
 }
 
+.signout-btn {
+  margin-left: 10px;
+  margin-right: 25px;
+  padding: 8px 12px;
+  background: var(--coral);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.signout-btn:hover {
+  background: #ff6b4d;
+}
+
+
 /* ----- PROFILE BOX ----- */
 .profile-container {
   background: rgba(249, 251, 252, 0.95);
@@ -181,3 +199,82 @@ label[for="bio"],
 .profile-container textarea {
   flex: none !important; /* prevents flexbox pushing it right */
 }
+
+.trip-info {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.trip-info h2 {
+  margin-bottom: 15px;
+  color: var(--emerald);
+  text-align: center;
+}
+
+.trip-info label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+.trip-info select,
+.trip-info input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.3);
+  background: white;
+  color: var(--text-dark);
+  font-size: 15px;
+}
+.style-row {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.style-row label {
+  font-size: 17px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: left;
+  color: var(--text-dark);
+}
+
+#trip-style {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.3);
+  background: white;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+
+#saveBtn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 12px 0;
+  background: var(--emerald);
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: var(--shadow);
+}
+
+#saveBtn:hover {
+  background: var(--mint);
+  transform: translateY(-2px);
+}
+
+#saveBtn:active {
+  transform: translateY(0);
+}
+

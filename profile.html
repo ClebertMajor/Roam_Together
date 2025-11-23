@@ -16,9 +16,11 @@
     </div>
 
     <div class="nav-buttons">
-      <a href="home.html">Home</a>
-      <a href="explore.html">Explore</a>
-    </div>
+  <a href="home.html">Home</a>
+  <a href="explore.html">Explore</a>
+  <button id="signOutBtn" class="signout-btn">Sign Out</button>
+</div>
+
   </header>
 
   <!-- ===== PROFILE BOX ===== -->
@@ -31,141 +33,148 @@
 
     <div class="user-info">
       <div><strong>Name:</strong> <span id="user-name">Loading...</span></div>
-      <div><strong>Travel Style:</strong> <span id="user-style">Loading...</span></div>
+    <div class="style-row">
+      <label for="trip-style"><strong>Travel Style:</strong></label>
+      <select id="trip-style" name="style">
+        <option value="" selected disabled>Select style</option>
+        <option value="solo">Solo, independent</option>
+        <option value="chill">Chill & beachy</option>
+        <option value="adventure">Adventure & outdoors</option>
+        <option value="luxury">Luxury & bougie</option>
+        <option value="budget">Budget & backpacking</option>
+        <option value="food">Food & culture focused</option>
+      </select>
+    </div>
+
     </div>
 
     <label for="bio"><strong>Bio:</strong></label>
     <textarea id="bio" placeholder="Write something about yourself..."></textarea>
 
-    <button id="saveBtn">Save Profile</button>
+   
+    <div class="trip-info">
+  <h2>Your Trip</h2>
+
+ <label for="trip-destination"><strong>Destination:</strong></label>
+<select id="trip-destination" name="location">
+  <option value="" selected disabled>Add location</option>
+  <option value="paris">Paris, France</option>
+  <option value="tokyo">Tokyo, Japan</option>
+  <option value="bali">Bali, Indonesia</option>
+  <option value="rome">Rome, Italy</option>
+  <option value="cancun">Cancún, Mexico</option>
+  <option value="nyc">New York City, USA</option>
+</select>
+
+  <label for="trip-start"><strong>Start Date:</strong></label>
+  <input type="date" id="trip-start">
+
+  <label for="trip-end"><strong>End Date:</strong></label>
+  <input type="date" id="trip-end">
+</div>
+
+ <button id="saveBtn">Save Profile</button>
+
+
   </div>
 
    <!-- ========================= -->
   <!--     FIREBASE MODULE       -->
   <!-- ========================= -->
-  <script type="module">
-  /* IMPORT FIREBASE CORE */
+ <script type="module">
   import { app, auth, db, storage } from "./js/firebaseConfig.js";
 
-  /* FIREBASE AUTH + FIRESTORE METHODS */
-  import {
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+  import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+  import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-storage.js";
 
-  import {
-    doc,
-    getDoc,
-    setDoc
-  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-
-  /* FIREBASE STORAGE METHODS */
-  import {
-    ref,
-    uploadBytes,
-    getDownloadURL
-  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-storage.js";
-
-
-  /* --------------------------- */
-  /*   PROFILE PAGE ELEMENTS     */
-  /* --------------------------- */
   const upload = document.getElementById("upload");
   const preview = document.getElementById("preview");
   const userNameSpan = document.getElementById("user-name");
-  const userStyleSpan = document.getElementById("user-style");
+  const travelStyleInput = document.getElementById("trip-style");
   const bioTextarea = document.getElementById("bio");
   const saveBtn = document.getElementById("saveBtn");
+  const signOutBtn = document.getElementById("signOutBtn");
+
+
+  const destinationInput = document.getElementById("trip-destination");
+  const startDateInput = document.getElementById("trip-start");
+  const endDateInput = document.getElementById("trip-end");
 
   let currentUserId = null;
   let selectedImageFile = null;
 
-
-  /* --------------------------- */
-  /*   IMAGE PREVIEW LOGIC       */
-  /* --------------------------- */
   upload.addEventListener("change", function () {
-    selectedImageFile = this.files[0];  // store the image for saving
-
-    if (selectedImageFile) {
-      preview.src = URL.createObjectURL(selectedImageFile);
-    }
+    selectedImageFile = this.files[0];
+    if (selectedImageFile) preview.src = URL.createObjectURL(selectedImageFile);
   });
 
-
-  /* --------------------------- */
-  /*   ON USER LOGIN             */
-  /* --------------------------- */
   onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      // If not logged in, send back to login
-      window.location.href = "home.html";
-      return;
-    }
-
+    if (!user) return window.location.href = "home.html";
     currentUserId = user.uid;
 
-    // Load Firestore profile data
     const docRef = doc(db, "users", currentUserId);
     const snap = await getDoc(docRef);
 
     if (snap.exists()) {
       const data = snap.data();
-
       userNameSpan.textContent = data.name || "Not set";
-      userStyleSpan.textContent = data.travelStyle || "Not set";
+      travelStyleInput.value = data.travelStyle || "";
       bioTextarea.value = data.bio || "";
 
-      if (data.profilePicURL) {
-        preview.src = data.profilePicURL;
-      }
+      destinationInput.value = data.destination || "";
+      startDateInput.value = data.startDate || "";
+      endDateInput.value = data.endDate || "";
 
-    } else {
-      // No Firestore doc yet
-      userNameSpan.textContent = user.email;
-      userStyleSpan.textContent = "Not set";
-      bioTextarea.value = "";
+      if (data.profilePicURL) preview.src = data.profilePicURL;
     }
   });
 
-
-  /* --------------------------- */
-  /*   SAVE PROFILE (BIO + PIC)  */
-  /* --------------------------- */
   saveBtn.addEventListener("click", async () => {
-    if (!currentUserId) {
-      alert("You must be logged in to save your profile.");
-      return;
-    }
+    if (!currentUserId) return alert("You must be logged in to save.");
 
-    const newBio = bioTextarea.value.trim();
     const userDocRef = doc(db, "users", currentUserId);
+
+    const bio = bioTextarea.value.trim();
+    const destination = destinationInput.value;
+    const startDate = startDateInput.value;
+    const endDate = endDateInput.value;
+    const travelStyle = travelStyleInput.value;
+
 
     let profilePicURL = null;
 
-    /* ---- ONLY UPLOAD IF IMAGE SELECTED ---- */
     if (selectedImageFile) {
       const imageRef = ref(storage, `profilePictures/${currentUserId}/profile.jpg`);
-
-      // Upload image to Firebase Storage
       await uploadBytes(imageRef, selectedImageFile);
-
-      // Get permanent download URL
       profilePicURL = await getDownloadURL(imageRef);
     }
 
-    /* ---- SAVE BIO + PROFILE PIC URL TO FIRESTORE ---- */
     await setDoc(
       userDocRef,
       {
-        bio: newBio,
-        ...(profilePicURL ? { profilePicURL: profilePicURL } : {})
+        bio,
+        destination,
+        startDate,
+        endDate,
+        travelStyle,
+        ...(profilePicURL ? { profilePicURL } : {})
       },
       { merge: true }
     );
 
     alert("Profile saved!");
   });
+  
+  import { signOut } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+  signOutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "home.html";
+  });
+
 </script>
+
 
 </body>
 </html>

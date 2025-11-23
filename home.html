@@ -421,19 +421,6 @@
         <input type="text" placeholder="Full Name" required />
         <input type="email" placeholder="Email Address" required />
         <input type="password" placeholder="Password Address" required />
-
-         <div class="search-col">
-          <label for="search-style">Travel style</label>
-          <select id="search-style" name="style">
-            <option value="" selected disabled>Select style</option>
-            <option value="solo">Solo, independent</option>
-            <option value="chill">Chill & beachy</option>
-            <option value="adventure">Adventure & outdoors</option>
-            <option value="luxury">Luxury & bougie</option>
-            <option value="budget">Budget & backpacking</option>
-            <option value="food">Food & culture focused</option>
-          </select>
-        </div>
         <button type="submit" class="cta-btn">Create Account</button>
         <button type="button" class="cta-btn" onclick="window.location.href='login.html'"> Already have an account?</button>
       </form>
@@ -561,7 +548,6 @@
     setDoc
   } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-
   /* ------------------------ */
   /*   SELECT SIGNUP FIELDS   */
   /* ------------------------ */
@@ -573,8 +559,6 @@
   const nameInput = signupForm.querySelector("input[type='text']");
   const emailInput = signupForm.querySelector("input[type='email']");
   const passwordInput = signupForm.querySelector("input[type='password']");
-  const travelStyleSelect = signupForm.querySelector("#search-style");
-
 
   /* ------------------------ */
   /*   SIGN-UP HANDLER        */
@@ -585,23 +569,16 @@
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
-    const travelStyle = travelStyleSelect.value;
-
-    if (!travelStyle) {
-      alert("Please select a travel style.");
-      return;
-    }
 
     try {
       // Create Firebase user
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       const user = cred.user;
 
-      // Store user's profile in Firestore
+      // Store user's profile in Firestore (NO travelStyle)
       await setDoc(doc(db, "users", user.uid), {
         name,
         email,
-        travelStyle,
         bio: "",
         createdAt: new Date()
       });
@@ -617,6 +594,7 @@
     }
   });
 </script>
+
 
 </body>
 </html>
